@@ -1,0 +1,204 @@
+{
+  "mapStyles": [
+    {
+      "label": "OSM Bright",
+      "thumbnail": "https://openicgc.github.io/img/osm-bright.png",
+      "url": "https://geoserveis.icgc.cat/contextmaps/osm-bright.json"
+    },
+    {
+      "label": "Positron",
+      "thumbnail": "https://openicgc.github.io/img/positron.png",
+      "url": "https://geoserveis.icgc.cat/contextmaps/positron.json"
+    },
+    {
+      "label": "Híbrido",
+      "thumbnail": "https://openicgc.github.io/img/orto.png",
+      "url": "https://geoserveis.icgc.cat/contextmaps/hibrid.json"
+    },
+    {
+      "label": "Full Dark",
+      "thumbnail": "https://openicgc.github.io/img/fulldark.png",
+      "url": "https://geoserveis.icgc.cat/contextmaps/fulldark.json"
+    }
+  ],
+  "defaultStyle": "https://geoserveis.icgc.cat/contextmaps/positron.json",
+  "initialViewport": {
+    "latitude": 41.4056,
+    "longitude": 2.159,
+    "zoom": 11,
+    "bearing": -45,
+    "pitch": 0
+  },
+  "baseUrl": "https://api.tmb.cat/v1/transit",
+  "categories": [
+    {
+      "id": "linies-metro",
+      "color": "#E10019",
+      "label": "/linies/metro",
+      "layers": [{
+        "id": "linies-metro",
+        "type": "line",
+        "paint": {
+          "line-color": ["concat", "#", ["get", "COLOR_LINIA"]],
+          "line-width": [
+            "step", ["zoom"], 2,
+            11, 3,
+            13, 4,
+            15, 6.5,
+            16, 11
+          ]
+        }
+      }]
+    },
+    {
+      "id": "linies-metro-1",
+      "color": "#E10019",
+      "label": "/linies/metro/1",
+      "layers": [{
+        "id": "linies-metro",
+        "type": "line",
+        "paint": {
+          "line-color": ["concat", "#", ["get", "COLOR_LINIA"]],
+          "line-width": [
+            "step", ["zoom"], 2,
+            11, 3,
+            13, 4,
+            15, 6.5,
+            16, 11
+          ]
+        }
+      }]
+    },
+    {
+      "id": "linies-metro-1-trams",
+      "color": "#E10019",
+      "label": "/linies/metro/1/trams",
+      "layers": [{
+        "id": "linies-metro-trams",
+        "type": "line",
+        "paint": {
+          "line-color": ["concat", "#", ["get", "COLOR_LINIA"]],
+          "line-width": [
+            "step", ["zoom"], 2,
+            11, 3,
+            13, 4,
+            15, 6.5,
+            16, 11
+          ]
+        }
+      }]
+    },
+    {
+      "id": "linies-metro-1-trams-glories",
+      "color": "#E10019",
+      "label": "/linies/metro/1/trams?filter=NOM_ESTACIO_INI='Glòries'",
+      "layers": [{
+        "id": "linies-metro-trams",
+        "type": "line",
+        "paint": {
+          "line-color": ["concat", "#", ["get", "COLOR_LINIA"]],
+          "line-width": [
+            "step", ["zoom"], 2,
+            11, 3,
+            13, 4,
+            15, 6.5,
+            16, 11
+          ]
+        }
+      }]
+    },
+    {
+      "id": "linies-metro-1-estacions",
+      "color": "#E10019",
+      "label": "/linies/metro/1/estacions",
+      "layers": [{
+        "id": "metro-estacio-circle",
+        "type": "circle",
+        "source": "metro-estacions-linia",
+        "minzoom": 10,
+        "maxzoom": 13,
+        "paint": {
+          "circle-radius": [
+            "step", ["zoom"], 1.5,
+            11, 2
+          ],
+          "circle-color": "#fff",
+          "circle-stroke-width": [
+            "step", ["zoom"], 1,
+            11, 1.5
+          ],
+          "circle-stroke-color": "#000"
+        }
+      }, {
+        "id": "metro-estacio-central",
+        "type": "symbol",
+        "source": "metro-est-linia-central",
+        "minzoom": 13,
+        "maxzoom": 14,
+        "layout": {
+          "icon-image": ["get", "PICTO_GRUP"],
+          "icon-size": 0.20
+        }
+      }, {
+        "id": "metro-estacio",
+        "type": "symbol",
+        "source": "metro-estacions-linia",
+        "minzoom": 14,
+        "layout": {
+          "icon-image": ["get", "PICTO"],
+          "icon-size": [
+            "step", ["zoom"], 0.20,
+            15, 0.28
+          ],
+          "text-field": [
+            "step", ["zoom"], "",
+            15, ["get", "NOM_ESTACIO"]
+          ],
+          "text-font": ["Open Sans Bold"],
+          "text-size": 12,
+          "text-anchor": "bottom",
+          "text-offset": [0, -1],
+          "icon-allow-overlap": true,
+          "text-allow-overlap": true
+        },
+        "paint": {
+          "text-color": "#fff",
+          "text-halo-color": "#000",
+          "text-halo-width": 1
+        }
+      }]
+    },
+    {
+      "id": "linies-bus",
+      "color": "#E10019",
+      "label": "/linies/bus",
+      "layers": [{
+        "id": "linies-bus",
+        "type": "line",
+        "paint": {
+          "line-color": ["concat", "#", ["get", "COLOR_LINIA"]],
+          "line-width": ["interpolate", ["linear"], ["zoom"],
+            14, 3,
+            16, 6
+          ]
+        }
+      }]
+    },
+    {
+      "id": "linies-bus-7",
+      "color": "#E10019",
+      "label": "/linies/bus/7",
+      "layers": [{
+        "id": "linies-bus",
+        "type": "line",
+        "paint": {
+          "line-color": ["concat", "#", ["get", "COLOR_LINIA"]],
+          "line-width": ["interpolate", ["linear"], ["zoom"],
+            14, 3,
+            16, 6
+          ]
+        }
+      }]
+    }
+  ]
+}
