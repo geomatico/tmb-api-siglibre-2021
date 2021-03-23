@@ -2,14 +2,14 @@ import ReactDOM from 'react-dom';
 import React, {useEffect, useState} from 'react';
 
 import {ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import {CssBaseline, Typography} from '@material-ui/core';
-import {BaseMapPicker, Map} from 'geocomponents';
+import {CssBaseline, Divider, Typography} from '@material-ui/core';
+import {BaseMapPicker, Map, CategoricFilter} from 'geocomponents';
 
 import theme from './theme';
 import config from './config.json';
 import ResponsiveHeader from './components/ResponsiveHeader';
 import ResponsiveDrawer from './components/ResponsiveDrawer';
-import {CategoricFilter} from 'geocomponents';
+import Logo from './components/Logo';
 
 const {mapStyles, defaultStyle, initialViewport, baseUrl, categories} = config;
 
@@ -48,6 +48,10 @@ const buildLayers = (selectedCategories) => selectedCategories
   ));
 
 const App = () => {
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [sources, setSources] = useState(buildSources(selectedCategories));
+  const [layers, setLayers] = useState(buildLayers(selectedCategories));
   const [viewport, setViewport] = useState(initialViewport);
   const [selectedStyleUrl, setSelectedStyleUrl] = useState(defaultStyle);
 
@@ -61,16 +65,9 @@ const App = () => {
 
   const classes = useStyles();
 
-  const [isDrawerOpen, setDrawerOpen] = React.useState(false);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [sources, setSources] = useState(buildSources(selectedCategories));
-  const [layers, setLayers] = useState(buildLayers(selectedCategories));
-
   useEffect(() => {
     const sources = buildSources(selectedCategories);
     const layers = buildLayers(selectedCategories);
-    console.log(sources);
-    console.log(layers);
     setSources(sources);
     setLayers(layers);
   }, [selectedCategories]);
@@ -79,12 +76,13 @@ const App = () => {
 
   return (<ThemeProvider theme={theme()}>
     <CssBaseline />
-    <ResponsiveHeader title="TMB API - Transit Demos" drawerWidth={drawerWidth} onMenuClick={handleDrawerToggle}>
+    <ResponsiveHeader title="TMB API - Ejemplos Transit" drawerWidth={drawerWidth} onMenuClick={handleDrawerToggle}>
       <Typography variant="caption" noWrap>SIG Libre 2021</Typography>
     </ResponsiveHeader>
     <ResponsiveDrawer width={drawerWidth} isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)}>
-      <Typography variant="subtitle2">{baseUrl}/...</Typography>
+      <Typography variant="h6">{baseUrl}/...</Typography>
       <CategoricFilter categories={categories} selected={selectedCategories} onSelectionChange={setSelectedCategories}/>
+      <Divider />
     </ResponsiveDrawer>
     <main className={classes.content}>
       <Map
@@ -99,9 +97,10 @@ const App = () => {
         selectedStyleUrl={selectedStyleUrl}
         onStyleChange={setSelectedStyleUrl}
         styles={mapStyles}
-        position='bottom-right'
+        position='bottom-left'
         direction='up'
       />
+      <Logo/>
     </main>
   </ThemeProvider>);
 };
