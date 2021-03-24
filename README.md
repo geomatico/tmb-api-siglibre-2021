@@ -23,7 +23,7 @@ Cómo está hecho:
 
 ## Transit
 
-* Oracle geospatial
+* Oracle spatial
 * GeoServer WFS
 * Capa "restificadora" programada en node
 
