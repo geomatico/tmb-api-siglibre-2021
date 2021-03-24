@@ -50,7 +50,7 @@ Cómo está hecho:
     * Google: https://www.google.com/maps
     * Moovit: https://moovitapp.com/barcelona-362/poi/es
     * CityMapper: https://citymapper.com/barcelona?set_region=es-barcelona
-
+    * Simuladores: https://tracker.geops.ch/?z=17&s=1&x=238763.4270&y=5068419.8899&l=transport
 
 ## Planner
 
