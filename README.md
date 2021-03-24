@@ -17,6 +17,10 @@ e incluye los siguientes servicios:
 | Static | Descarga de fichero GTFS |
 | Planner | Routing multimodal |
 
+Cómo está hecho:
+
+![API TMB](static/api_tmb.png)
+
 ## Transit
 
 * Oracle geospatial
@@ -31,7 +35,10 @@ e incluye los siguientes servicios:
 
 ## iBus
 
+* Desarrollo java propio
+
 * Docs: https://developer.tmb.cat/api-docs/v1/ibus
+* Demo: https://www.tmb.cat/ca/barcelona/tmb-ibus/proxims-busos/-/lineabus/parada-ibus/108
 
 
 ## Static
